@@ -1,0 +1,51 @@
+
+Some common gases and particulates that you might want to monitor, along with corresponding sensors:
+
+1. Carbon Monoxide (CO) - MQ-7 CO sensor
+2. Nitrogen Dioxide (NO2) - MiCS-2714 NO2 sensor
+3. Sulfur Dioxide (SO2) - SPEC SO2 sensor
+4. Ammonia (NH3) - MQ-137 NH3 sensor
+5. Particulate Matter (PM2.5 and PM10) - SDS011 particulate matter sensor
+
+Code:
+
+// Assign sensor's pins
+const int CO_SENSOR_PIN = A0; 
+const int NO2_SENSOR_PIN = A1; 
+const int SO2_SENSOR_PIN = A2; 
+const int NH3_SENSOR_PIN = A3; 
+const int PM_SENSOR_RX = 8; 
+const int PM_SENSOR_TX = 9; 
+
+// Create a SoftwareSerial object for the PM sensor
+SoftwareSerial pmSerial(PM_SENSOR_RX, PM_SENSOR_TX); 
+
+void setup() {
+  Serial.begin(9600);
+  pmSerial.begin(9600);
+}
+
+void loop() {
+  int co = analogRead(CO_SENSOR_PIN);
+  int no2 = analogRead(NO2_SENSOR_PIN);
+  int so2 = analogRead(SO2_SENSOR_PIN);
+  int nh3 = analogRead(NH3_SENSOR_PIN);
+
+  // PM sensor read operation here
+  // ...
+
+  // Send to serial port
+  Serial.print("CO Level: ");
+  Serial.println(co);
+  Serial.print("NO2 Level: ");
+  Serial.println(no2);
+  Serial.print("SO2 Level: ");
+  Serial.println(so2);
+  Serial.print("NH3 Level: ");
+  Serial.println(nh3);
+
+  // PM print operation here
+  // ...
+
+  delay(1000);
+}
